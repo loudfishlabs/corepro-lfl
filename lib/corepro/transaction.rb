@@ -20,6 +20,7 @@ module CorePro
     attr_accessor :availableDate
     attr_accessor :returnCode
     attr_accessor :isCredit
+    attr_accessor :masterId
 
     def self.list(customerId, accountId, status = nil, beginDate = nil, endDate = nil, pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
       t = Transaction.new
