@@ -5,16 +5,17 @@ require_relative '../lib/corepro/models/file_content'
 class AfBankDocumentTest < CoreProTestBase
   def test_list
     docs = CorePro::BankDocument.list 'en-US', nil, @@exampleConn, nil
-    doc = nil
-    docs.each do |x|
-      doc = x # if x.documentType == 'eStatement'
-    end
+    assert docs.count > 0
+    doc = docs[0]
     @@documentId = doc.documentId
     assert_instance_of CorePro::BankDocument, doc
   end
 
   def test_zzz_download
-    doc = CorePro::BankDocument.download 'en-US', @@documentId, @@exampleConn, nil
-    assert_instance_of CorePro::Models::FileContent, doc
+    doc = CorePro::BankDocument.new
+    doc.documentId = @@documentId
+    doc.culture = 'en-US'
+    file = doc.download(@@exampleConn)
+    assert_instance_of CorePro::Models::FileContent, file
   end
 end

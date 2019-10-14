@@ -6,19 +6,15 @@ class AbAccountTest < CoreProTestBase
   def test_create
     a = CorePro::Account.new
     a.customerId = @@exampleCustomerId
-    a.tag = "act ruby #{@@timestamp}"
-    a.type = 'Checking'
-    a.productId = 348741
+    a.tag = "acc-#{@@timestamp}"
+    a.productId = @@exampleProductId
     a.category = 'CategoryA'
     a.subCategory = 'CategoryB'
     a.isCloseable = true
     a.name = "Account #{@@timestamp}"
-    a.targetAmount = 500
-    a.targetDate = '01/01/2030'
     @@exampleAccountId = a.create @@exampleConn, nil
     puts "accountId=#{@@exampleAccountId}"
     assert @@exampleAccountId > 0
-
   end
 
   def test_list

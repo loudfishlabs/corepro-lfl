@@ -6,7 +6,7 @@ class AProgramTest < CoreProTestBase
     p = CorePro::Program.get @@exampleConn, nil
     pa = p.accounts.select {|e| e.type == 'ProgramReserve'}
     @@exampleProgramReserveAccountId = pa[0].programAccountId
+    assert_not_nil(@@exampleProgramReserveAccountId)
     puts "Program Reserve AccountId=#{@@exampleProgramReserveAccountId}"
-    assert_equal 'Example1', p.name
   end
 end
